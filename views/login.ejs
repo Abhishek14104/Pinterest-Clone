@@ -1,0 +1,29 @@
+<% include ./partials/header.ejs %>
+
+  <div class="w-full h-screen bg-zinc-300 flex items-center justify-center">
+    <div class="bg-zinc-100 h-[60vh] w-[30vw] px-20 py-5 rounded-3xl">
+      <img src="../images/logo_trans_144x144-642179a1.png" class="h-10 w-10 block m-auto">
+      <p class="text-3xl font-medium block text-center leading-none">Welcome to Pintrest</p>
+
+      <form autocomplete="off" action="/login" class="mt-10" method="post">
+        <p class="py-2">User Name</p>
+        <input class="block w-full px-4 py-3 border-2 border-gray-500 rounded-3xl hover:border-gray-300 " type="text" placeholder="User Name" name="username">
+        <p class="py-2">Password</p>
+        <input class="block w-full px-4 py-3 rounded-3xl border-2 border-gray-500 hover:border-gray-300 " type="text" placeholder="Password" name="password">
+        <a href="#" class="hover:underline font-medium text-sm" >Forgot your password?</a>
+        <input class="block w-full px-4 py-3 bg-red-600 rounded-3xl mt-10 text-white" type="submit" value="Login">
+      </form>
+
+
+      <p class="text-xs text-center">By continuing, you agree to Pinterest's
+        <a href="#" class="hover:underline font-medium">Terms of Service</a>
+        and acknowledge you've read our <a href="#" class="hover:underline font-medium">Privacy Policy</a>
+      </p>
+
+      <hr class="">
+      <p class="text-xs text-center">Not on Pinterest yet? <a href="/registor" class="hover:underline font-medium">Sign up</a>
+      </p>
+    </div>
+  </div>
+
+  <% include ./partials/footer.ejs %>

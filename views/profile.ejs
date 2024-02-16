@@ -1,0 +1,142 @@
+<% include ./partials/header.ejs %>
+
+    <nav class=" fixed justify-around top-0 flex w-full h-16  bg-zinc-100 z-10">
+
+        <div class="relative flex h-16 items-center w-full px-3 ">
+
+            <div class="flex items-center w-full">
+
+                <div class="flex  w-full justify-between items-center">
+
+                    <div class="flex flex-shrink-0 items-center ">
+                        <img class="h-9 w-auto" src="../images/logo_trans_144x144-642179a1.png">
+                    </div>
+
+                    <div class="hidden sm:ml-6 sm:block">
+                        <div class="flex space-x-4">
+                            <a href="/home" class="bg-zinx-100 text-black px-3 py-2 text-sm font-medium"
+                                aria-current="page">Home</a>
+                            <a href="/explore" class="bg-zinx-100 text-black px-3 py-2 text-sm font-medium">Explore</a>
+                            <a href="/create" class="bg-zinx-100 text-black px-3 py-2 text-sm font-medium">Create</a>
+                        </div>
+                    </div>
+
+                    <div class="serachBar w-8/12">
+                        <form action="" class="flex items-center justify-center w-full relative">
+                            <i class="bi bi-search absolute left-8 indent-1 "></i>
+                            <input class=" w-10/12 bg-zinc-300 h-full rounded-l-2xl py-2 text-lg px-9" type="text"
+                                placeholder="Serach you Pins">
+                            <button type=""
+                                class="bg-zinc-300 h-full rounded-r-2xl py-2 px-2 border-l-2 border-zinc-500 ">
+                                Your Pins
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class=" absolute inset-y-0 right-0 flex items-center pr-2 sm:static float-right">
+                        <div class="relative ml-3">
+                            <div class="flex items-center">
+                                <button type="button" class="text-2xl m-3">
+                                    <i class="bi bi-bell-fill"></i>
+                                </button>
+                                <button type="button" class="m-3">
+                                    <i class="bi bi-chat-dots-fill text-2xl"></i>
+                                </button>
+
+                                <div class="w-8 h-8 rounded-full bg-zinc-800 overflow-hidden items-center flex justify-center ">
+                                <button type="button" class="h-8 w-8 rounded-full">
+                                    <img class="rounded-full h-8 w-8" src="/images/uploads/<%= user.profileImage %>">
+                                </button>
+                                </div>
+                                <button type="button" class="ml-3 px-3 py-2 bg-zinc-400 transition-all ease-in hover:bg-red-600 rounded-full">
+                                    <a href="/logout">Logout</a>
+                                </button>
+                                <!-- <button type="button" class="">
+                                <i class="bi bi-chevron-down"></i>
+                                </button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </nav>
+
+    <form hidden action="/fileupload" id="uploadForm" method="post" enctype="multipart/form-data">
+        <input type="file" name="image">
+    </form>
+    <form hidden action="/pinupload" id="pinUploadForm" method="post" enctype="multipart/form-data">
+        <input type="file" name="image">
+    </form>
+
+    <div class="w-full mt-16 bg-zinc-100 text-black py-8 h-screen  ">
+        <div class="flex flex-col justify-center items-center overflow-hidden">
+            
+            <div class="relative z-0">
+                <span id="uploadImg">
+                    <i class="bi bi-pencil-fill absolute bottom-4 right-6 bg-white h-6 px-1 text-sm justify-center items-center flex rounded-full cursor-pointer "></i>
+                </span>
+                    <div class="w-36 h-36 rounded-full bg-zinc-800 overflow-hidden items-center flex justify-center ">
+                        <img class="h-[100%] w-[100%]" src="/images/uploads/<%= user.profileImage %>">
+                        <!-- profile img -->
+                    </div>
+            </div>
+
+            <h1 class="text-4xl font-medium mt-2"><%= user.name %></h1>
+
+            <!-- username and following optioins -->
+            <div class=" flex flex-col mt-2 gap-0">
+                <p>
+                <div class="flex"><img src="../images/logo_trans_144x144-642179a1.png" class="saturate-0 h-7 w-7">
+                    <%= user.username %>
+                </div>
+                <h4 class="mt-1 px-3">0 following</h4>
+                </p>
+            </div>
+
+            <!-- Share and edit button -->
+            <div class="text-black font-medium mt-5">
+                <a href="/share" class="bg-gray-300 rounded-3xl px-5 py-2 mr-3">Share</a>
+                <a href="/edit" class="bg-gray-300 rounded-3xl px-5 py-2">Edit Profile</a>
+            </div>
+
+            <!-- create and save button -->
+            <div class="text-black font-medium mt-8 flex justify-center items-center">
+                <a href="created" class="hover:bg-gray-300  rounded-xl mr-14 text-center px-3 py-2">Created</a>
+                <a href="save" class="hover:bg-gray-300 rounded-xl text-center ml-5 px-3 py-3">Save</a>
+            </div>
+
+        </div>
+
+        <!-- board ke pahale ke icons -->
+        <div class=" icons text-black font-medium mt-16 flex justify-between items-center">
+            <i class="bi bi-sliders ml-7 text-2xl"></i>
+            <i id="boardImg" class="bi bi-plus-lg mr-7 font-bold text-2xl"></i>
+        </div>
+
+        <!-- boards beigns here -->
+        <div id="pins" class="flex flex-wrap justify-around w-full overflow-x-hidden">
+            <!-- <img src="../images/uploads/299ea73f-4114-4093-b25b-1e4bd3c1f8b1.jpg" class="h-96 w-56 rounded-xl mt-3"> -->
+        </div>
+
+    <script>
+        document.querySelector('#uploadImg').addEventListener("click" , function(){
+            document.querySelector("#uploadForm input").click();
+        }) 
+
+        document.querySelector('#uploadForm input').addEventListener("change" , () => {
+            document.querySelector("#uploadForm").submit();
+        }) ;   
+
+
+        document.querySelector('#boardImg').addEventListener("click" , function(){
+            document.querySelector("#pinUploadForm input").click();
+        }) 
+
+        document.querySelector('#pinUploadForm input').addEventListener("change" , () => {
+            document.querySelector("#pinUploadForm").submit();
+        }) ;   
+    </script>
+
+    <% include ./partials/footer.ejs %>

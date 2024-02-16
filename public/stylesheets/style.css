@@ -1,0 +1,14 @@
+#index-signup{
+    width: 20vw;
+}
+#index-signup-container{
+    position: relative;
+}
+#index-shop{
+    overflow-x: hidden;
+}
+main{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
